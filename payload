@@ -1,0 +1,73 @@
+Wedding Application APi:
+
+
+1. welcome details messages payload  
+End Point: http://localhost:8500/api/welcomemessages
+
+{
+"messages":[
+            "hello",
+            "there"
+            ],
+"photo":"single photo"
+                
+}
+      
+
+ 2.wedding details payload:
+ End point: http://localhost:8500/api/weddingeventdetails 
+ 
+ {
+    "venue":"Delhi",
+    "location":"noida",
+    "date":"2023-05-05",
+    "time":"07",
+    "photos":[{
+            "mutiple photos"
+    }]
+ }
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 3.wedding images payload  : (no need now)
+ End Point:localhost:8500/api/weddingimages
+      {
+      "userid":1,
+      "weddingimages":[
+          "image.jpg",
+          "image1.jpg",
+          "image2.jpg"
+
+      ]
+      
+      }
