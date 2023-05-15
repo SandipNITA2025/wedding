@@ -40,5 +40,21 @@ const addDetailsController = async (req, res) => {
 
 
 
+//GET METHOD:
+const getDetailsController = async (req, res) => {
+  try {
+    const details = await weddingWelcomeDetails.find();
+    res.status(200).json({
+      message: "get successfully",
+      details,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "Error retrieving details",
+      error,
+    });
+  }
+};
 
-module.exports = { addDetailsController };
+module.exports = { addDetailsController, getDetailsController };

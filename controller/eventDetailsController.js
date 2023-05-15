@@ -52,5 +52,22 @@ const eventDetailsController = async (req, res) => {
 };
 
 
+//GET METHOD:
+const getEventController = async (req, res) => {
+  try {
+    const details = await eventDetails.find();
+    res.status(200).json({
+      message: "get event details successfully",
+      details,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "Error retrieving details",
+      error,
+    });
+  }
+};
 
-module.exports = { eventDetailsController };
+module.exports = { eventDetailsController, getEventController };
+

@@ -9,6 +9,7 @@ const bodyParser = require("body-parser");
 const connectDB = require("./config/mongoDb");
 const welcomeDetails = require("./routes/welcomeDetails");
 const eventDetails = require("./routes/eventDetails");
+const addUser = require("./routes/addUser")
 
 const app = express();
 
@@ -38,6 +39,8 @@ app.use(
 app.use("/api/welcomemessages", welcomeDetails);
 //EVENT DETAILS
 app.use("/api/weddingeventdetails", eventDetails);
+//ADD NEW USER
+app.use("/api/adduser", addUser);
 
 //rest api:
 app.get("/", (req, res) => {
