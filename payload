@@ -27,7 +27,83 @@ End Point: http://localhost:8500/api/welcomemessages
     }]
  }
 
+
+
+
+ ENDPOINTS:
+ 
+1. POST | Add user  -> http://localhost:8500/api/adduser
+
+
+2. GET | getalluser -> http://localhost:8500/api/adduser
+
+
+3. POST & GET | welcome  -> http://localhost:8500/api/welcomemessages
+
+
+4. POST & GET | event details  -> http://localhost:8500/api/weddingeventdetails
+
+
+5. GET | MERGE DETAILS -> http://localhost:8500/api/mergedetails
+
+
+6. POST | REGISTER -> http://localhost:8500/api/auth/register
+            //body->form-data:
+            {
+                authName:"Akash",
+                authEmail:"akash@gmail.com",
+                authPassword:"123456"
+            }
+
+
+
+
+
+7. POST | LOGIN -> http://localhost:8500/api/auth/login
+
+            //body->form-data:
+            {
+                authEmail:"akash@gmail.com",
+                authPassword:"123456"
+            }
       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

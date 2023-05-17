@@ -9,7 +9,9 @@ const bodyParser = require("body-parser");
 const connectDB = require("./config/mongoDb");
 const welcomeDetails = require("./routes/welcomeDetails");
 const eventDetails = require("./routes/eventDetails");
-const addUser = require("./routes/addUser")
+const addUser = require("./routes/addUser");
+const authRoute = require("./routes/authRoute");
+const mergeRoute = require("./routes/mergeRoute");
 
 const app = express();
 
@@ -34,19 +36,32 @@ app.use(
   })
 );
 
+
+
+
+
 //routes:
+
 // WELCOME DETAILS
 app.use("/api/welcomemessages", welcomeDetails);
 //EVENT DETAILS
 app.use("/api/weddingeventdetails", eventDetails);
+//merge above two api details:
+app.use("/api/mergedetails", mergeRoute);
+//auth route:
+app.use("/api/auth", authRoute);
 //ADD NEW USER
 app.use("/api/adduser", addUser);
+
+
+
+
+
 
 //rest api:
 app.get("/", (req, res) => {
   res.send("<h1>Hello World</h1>");
 });
-
 
 //PORT
 const PORT = process.env.PORT || 8500;
