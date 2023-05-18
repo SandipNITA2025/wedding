@@ -12,6 +12,7 @@ const eventDetails = require("./routes/eventDetails");
 const addUser = require("./routes/addUser");
 const authRoute = require("./routes/authRoute");
 const mergeRoute = require("./routes/mergeRoute");
+const collectionRoute = require("./routes/collectionRoute");
 
 const app = express();
 
@@ -21,8 +22,8 @@ const fileUpload = require("express-fileupload");
 //middlewares:
 app.use(logger("dev"));
 app.use(bodyParser.text());
-app.use(express.json({ limit: "5mb" }));
-app.use(express.urlencoded({ limit: "5mb", extended: true }));
+app.use(express.json({ limit: "500mb" }));
+app.use(express.urlencoded({ limit: "500mb", extended: true }));
 app.use(cookieParser());
 app.use(cors());
 
@@ -36,10 +37,6 @@ app.use(
   })
 );
 
-
-
-
-
 //routes:
 
 // WELCOME DETAILS
@@ -52,11 +49,8 @@ app.use("/api/mergedetails", mergeRoute);
 app.use("/api/auth", authRoute);
 //ADD NEW USER
 app.use("/api/adduser", addUser);
-
-
-
-
-
+//collection route:
+app.use("/api/auth", collectionRoute);
 
 //rest api:
 app.get("/", (req, res) => {

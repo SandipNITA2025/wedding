@@ -56,9 +56,6 @@ End Point: http://localhost:8500/api/welcomemessages
             }
 
 
-
-
-
 7. POST | LOGIN -> http://localhost:8500/api/auth/login
 
             //body->form-data:
@@ -66,6 +63,31 @@ End Point: http://localhost:8500/api/welcomemessages
                 authEmail:"akash@gmail.com",
                 authPassword:"123456"
             }
+
+
+
+
+
+8. POST | ADD COLLECTION: -> http://localhost:8500/api/auth/add-collection
+            //body->form-data:
+             {
+                authId:"(login _id)", 
+                collectionName:"Anything",
+                photos:{
+                    multiple files
+                }
+            }
+
+
+
+8. GET | GET PARTICULER USER COLLECTIONS: -> http://localhost:8500/api/auth/get-collection?authId=(login _id)
+
+            //Params:
+             {
+               authId:"(login _id)"
+            }
+
+
       
 
 

@@ -1,22 +1,14 @@
 const mongoose = require("mongoose");
 // Wedding event model:
-const EventSchema = new mongoose.Schema(
+const collectionSchema = new mongoose.Schema(
   {
-    venue: {
+    authId: {
       type: String,
       required: true,
     },
-    location: {
+    collectionName: {
       type: String,
       required: true,
-    },
-    date: {
-      type: String,
-      required: true,
-    },
-    time: {
-      type: String,
-      required: false,
     },
     photos: [
       {
@@ -26,7 +18,7 @@ const EventSchema = new mongoose.Schema(
         },
         url: {
           type: String,
-          required: false,
+          required: true,
         },
         size: {
           type: Number,
@@ -42,4 +34,4 @@ const EventSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("eventDetails", EventSchema);
+module.exports = mongoose.model("collectionModel", collectionSchema);

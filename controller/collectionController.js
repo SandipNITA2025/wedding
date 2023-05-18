@@ -1,18 +1,18 @@
-const eventDetails = require("../models/eventModel");
+const collectionModel = require("../models/collectionModel");
 const cloudinary = require("../utils/cloudinary");
 
 // POST METHOD
-const eventDetailsController = async (req, res) => {
+const AddCollectionController = async (req, res) => {
   try {
-    const { venue, location, date, time } = req.body;
+    const { authId, collectionName } = req.body;
     const photos = req.files.photos;
 
     let photosArr = [];
     if (Array.isArray(photos)) {
       for (const photo of photos) {
         const result = await cloudinary.uploader.upload(photo.tempFilePath, {
-          folder: "WeddingEvent",
-          public_id: `photo_${Date.now()}`, 
+          folder: "Collections",
+          public_id: `photo_${Date.now()}`,
         });
 
         photosArr.push({
@@ -24,7 +24,7 @@ const eventDetailsController = async (req, res) => {
       }
     } else {
       const result = await cloudinary.uploader.upload(photos.tempFilePath, {
-        folder: "WeddingEvent",
+        folder: "Collections",
         public_id: `photo_${Date.now()}`,
       });
 
@@ -32,26 +32,24 @@ const eventDetailsController = async (req, res) => {
         public_id: result.public_id,
         url: result.secure_url,
         size: result.bytes,
-        name: photos.name, 
+        name: photos.name,
       });
     }
 
-    const savedPost = await eventDetails.create({
-      venue,
-      location,
-      date,
-      time,
+    const savedPost = await collectionModel.create({
+      authId,
+      collectionName,
       photos: photosArr,
     });
 
     res.status(200).json({
-      message: "added event details successfully",
+      message: "Added collection details successfully",
       savedPost,
     });
   } catch (error) {
     console.error(error);
     res.status(500).json({
-      message: "Something went wrong",
+      message: "Error uploading photos",
       error,
     });
   }
@@ -59,11 +57,12 @@ const eventDetailsController = async (req, res) => {
 
 
 // GET METHOD
-const getEventController = async (req, res) => {
+const GetCollectionController = async (req, res) => {
   try {
-    const details = await eventDetails.find();
+    const { authId } = req.query; // Access authId from query parameters
+    const details = await collectionModel.find({ authId });
     res.status(200).json({
-      message: "get event details successfully",
+      message: "Get collection details successfully",
       details,
     });
   } catch (error) {
@@ -73,6 +72,6 @@ const getEventController = async (req, res) => {
       error,
     });
   }
-};
+}
 
-module.exports = { eventDetailsController, getEventController };
+module.exports = { AddCollectionController, GetCollectionController };
