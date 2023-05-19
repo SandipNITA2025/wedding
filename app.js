@@ -16,7 +16,7 @@ const collectionRoute = require("./routes/collectionRoute");
 
 const app = express();
 
-// fileUpload
+// fileUpload :
 const fileUpload = require("express-fileupload");
 
 //middlewares:
