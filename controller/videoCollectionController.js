@@ -1,21 +1,22 @@
-const collectionModel = require("../models/collectionModel");
+const collectionModel = require("../models/videoCollectionModel");
 const cloudinary = require("../utils/cloudinary");
 
 // POST METHOD
-const AddCollectionController = async (req, res) => {
+const AddVideoCollectionController = async (req, res) => {
   try {
-    const { authId, collectionName, collectionType } = req.body;
-    const photos = req.files.photos;
+    const { authId, VideoCollectionName } = req.body;
+    const videos = req.files.videos;
 
-    let photosArr = [];
-    if (Array.isArray(photos)) {
-      for (const photo of photos) {
+    let videosArr = [];
+    if (Array.isArray(videos)) {
+      for (const photo of videos) {
         const result = await cloudinary.uploader.upload(photo.tempFilePath, {
-          folder: "Collections",
-          public_id: `photo_${Date.now()}`,
+            resource_type: "video",
+          folder: "Video_Collections",
+          public_id: `video_${Date.now()}`,
         });
 
-        photosArr.push({
+        videosArr.push({
           public_id: result.public_id,
           url: result.secure_url,
           size: result.bytes,
@@ -23,24 +24,24 @@ const AddCollectionController = async (req, res) => {
         });
       }
     } else {
-      const result = await cloudinary.uploader.upload(photos.tempFilePath, {
-        folder: "Collections",
+      const result = await cloudinary.uploader.upload(videos.tempFilePath, {
+        resource_type: "video",
+        folder: "Video_Collections",
         public_id: `photo_${Date.now()}`,
       });
 
-      photosArr.push({
+      videosArr.push({
         public_id: result.public_id,
         url: result.secure_url,
         size: result.bytes,
-        name: photos.name,
+        name: videos.name,
       });
     }
 
     const savedPost = await collectionModel.create({
       authId,
-      collectionName,
-      collectionType,
-      photos: photosArr,
+      VideoCollectionName,
+      videos: videosArr,
     });
 
     res.status(200).json({
@@ -50,68 +51,70 @@ const AddCollectionController = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({
-      message: "Error uploading photos",
+      message: "Error uploading videos",
       error,
     });
   }
 };
 
-// POST METHOD - Add More Photos
-const AddMorePhotosController = async (req, res) => {
+// POST METHOD - Add More videos
+const AddMorevideosController = async (req, res) => {
   try {
     const { collectionId } = req.body;
-    const photos = req.files.photos;
+    const videos = req.files.videos;
 
-    let photosArr = [];
-    if (Array.isArray(photos)) {
-      for (const photo of photos) {
-        const result = await cloudinary.uploader.upload(photo.tempFilePath, {
-          folder: "Collections",
-          public_id: `photo_${Date.now()}`,
+    let videosArr = [];
+    if (Array.isArray(videos)) {
+      for (const video of videos) {
+        const result = await cloudinary.uploader.upload(video.tempFilePath, {
+            resource_type: "video",
+          folder: "Video_Collections",
+          public_id: `video_${Date.now()}`,
         });
 
-        photosArr.push({
+        videosArr.push({
           public_id: result.public_id,
           url: result.secure_url,
           size: result.bytes,
-          name: photo.name,
+          name: video.name,
         });
       }
     } else {
-      const result = await cloudinary.uploader.upload(photos.tempFilePath, {
-        folder: "Collections",
-        public_id: `photo_${Date.now()}`,
+      const result = await cloudinary.uploader.upload(videos.tempFilePath, {
+        resource_type: "video",
+        folder: "Video_Collections",
+        public_id: `video_${Date.now()}`,
       });
 
-      photosArr.push({
+      videosArr.push({
         public_id: result.public_id,
         url: result.secure_url,
         size: result.bytes,
-        name: photos.name,
+        name: videos.name,
       });
     }
 
     const updatedPost = await collectionModel.findByIdAndUpdate(
       collectionId,
-      { $push: { photos: { $each: photosArr } } },
+      { $push: { videos: { $each: videosArr } } },
       { new: true }
     );
 
     res.status(200).json({
-      message: "Added additional photos successfully",
+      message: "Added additional videos successfully",
       updatedPost,
     });
   } catch (error) {
     console.error(error);
     res.status(500).json({
-      message: "Error uploading additional photos",
+      message: "Error uploading additional videos",
       error,
     });
   }
 };
 
 // GET METHOD
-const GetCollectionController = async (req, res) => {
+const GetVideoCollectionController = async (req, res) => {
   try {
     const { authId } = req.query; // Access authId from query parameters
     const details = await collectionModel.find({ authId });
@@ -129,7 +132,7 @@ const GetCollectionController = async (req, res) => {
 };
 
 module.exports = {
-  AddCollectionController,
-  AddMorePhotosController,
-  GetCollectionController,
+  AddVideoCollectionController,
+  AddMorevideosController,
+  GetVideoCollectionController,
 };

@@ -73,14 +73,61 @@ End Point: http://localhost:8500/api/welcomemessages
              {
                 authId:"(login _id)", 
                 collectionName:"Anything",
+                collectionType:"general/close"
                 photos:{
                     multiple files
                 }
             }
 
+POST | ADD MORE PHOTOS: -> http://localhost:8500/api/auth/add-morephoto
+
+                {
+                    collectionId:(collection _id),
+                    photos:{
+
+                    }
+                }
+
+ GET | GET PARTICULER USER COLLECTIONS: -> http://localhost:8500/api/auth/get-collection?authId=(login _id)
+
+            //Params:
+             {
+               authId:"(login _id)"
+            }
 
 
-8. GET | GET PARTICULER USER COLLECTIONS: -> http://localhost:8500/api/auth/get-collection?authId=(login _id)
+
+
+
+
+
+
+
+
+9. POST | ADD VIDEO COLLECTION: -> http://localhost:8500/api/auth/add-video-collection
+            //body->form-data:
+             {
+                authId:"(login _id)", 
+                videoCollectionName:"Anything",
+                collectionType:"general/close"
+                videos:{
+                    multiple files
+                }
+            }
+
+
+POST | ADD MORE VIDEOS: -> http://localhost:8500/api/auth/add-video-more
+
+                {
+                    collectionId:(collection _id),
+                    videos:{
+                                
+                    }
+                }
+
+
+
+ GET | GET PARTICULER USER VIDEOs COLLECTIONS: -> http://localhost:8500/api/auth//get-video-collection?authId=6464855699641087a53b46e0
 
             //Params:
              {

@@ -1,20 +1,20 @@
 const mongoose = require("mongoose");
 // Wedding event model:
-const collectionSchema = new mongoose.Schema(
+const videoCollectionSchema = new mongoose.Schema(
   {
     authId: {
       type: String,
       required: true,
     },
-    collectionName: {
+    VideoCollectionName: {
       type: String,
       required: true,
     },
-    collectionType: {
+    VideoCollectionType: {
       type: String,
       required: false,
     },
-    photos: [
+    videos: [
       {
         public_id: {
           type: String,
@@ -38,4 +38,4 @@ const collectionSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("collectionModel", collectionSchema);
+module.exports = mongoose.model("videoCollectionSchema", videoCollectionSchema);

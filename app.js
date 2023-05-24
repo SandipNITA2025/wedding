@@ -13,6 +13,7 @@ const addUser = require("./routes/addUser");
 const authRoute = require("./routes/authRoute");
 const mergeRoute = require("./routes/mergeRoute");
 const collectionRoute = require("./routes/collectionRoute");
+const videoCollectionRoute = require("./routes/videoCollectionRoute");
 
 const app = express();
 
@@ -22,10 +23,11 @@ const fileUpload = require("express-fileupload");
 //middlewares:
 app.use(logger("dev"));
 app.use(bodyParser.text());
-app.use(express.json({ limit: "500mb" }));
-app.use(express.urlencoded({ limit: "500mb", extended: true }));
+app.use(express.json({ limit: Infinity }));
+app.use(express.urlencoded({ limit: Infinity, extended: true }));
 app.use(cookieParser());
 app.use(cors());
+
 
 //MongoDB connect:
 connectDB();
@@ -51,6 +53,8 @@ app.use("/api/auth", authRoute);
 app.use("/api/adduser", addUser);
 //collection route:
 app.use("/api/auth", collectionRoute);
+//Video collection route:
+app.use("/api/auth", videoCollectionRoute);
 
 //rest api:
 app.get("/", (req, res) => {
