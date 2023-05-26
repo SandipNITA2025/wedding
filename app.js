@@ -14,6 +14,7 @@ const authRoute = require("./routes/authRoute");
 const mergeRoute = require("./routes/mergeRoute");
 const collectionRoute = require("./routes/collectionRoute");
 const videoCollectionRoute = require("./routes/videoCollectionRoute");
+const pollsRoute = require("./routes/pollsRoute");
 
 const app = express();
 
@@ -55,6 +56,8 @@ app.use("/api/adduser", addUser);
 app.use("/api/auth", collectionRoute);
 //Video collection route:
 app.use("/api/auth", videoCollectionRoute);
+//Polls route:
+app.use("/api/auth", pollsRoute);
 
 //rest api:
 app.get("/", (req, res) => {
