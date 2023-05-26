@@ -135,6 +135,42 @@ POST | ADD MORE VIDEOS: -> http://localhost:8500/api/auth/add-video-more
             }
 
 
+
+
+10. POST | POLL:
+	API: http://localhost:8500/api/auth/polls
+		
+		body->form data:
+			{
+                authId:________,
+                question:_______,
+                options:________,
+                options:________,
+                options:________,
+                options:________,
+			}
+
+
+// PUT | Update the vote count on click particular option:
+        API: http://localhost:8500/api/auth/polls/:id/vote
+            //Params:
+             {
+               id:"(poll _id)"
+            }
+
+            //body->form data:
+                optionIndex : _________,
+
+
+
+ GET | Get specific polls by authId:
+        API: http://localhost:8500/api/auth/get-polls?authId=6464855699641087a53b46e0
+
+			//Params:
+             {
+               authId:"(login _id)"
+            }
+
       
 
 

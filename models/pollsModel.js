@@ -4,7 +4,7 @@ const PollsSchema = new mongoose.Schema(
   {
     authId: {
       type: String,
-      required: false,
+      required: true,
     },
     question: {
       type: String,

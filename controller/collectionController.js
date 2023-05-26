@@ -113,7 +113,7 @@ const AddMorePhotosController = async (req, res) => {
 // GET METHOD
 const GetCollectionController = async (req, res) => {
   try {
-    const { authId } = req.query; // Access authId from query parameters
+    const { authId } = req.query;
     const details = await collectionModel.find({ authId });
     res.status(200).json({
       message: "Get collection details successfully",
