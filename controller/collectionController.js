@@ -4,7 +4,7 @@ const cloudinary = require("../utils/cloudinary");
 // POST METHOD
 const AddCollectionController = async (req, res) => {
   try {
-    const { authId, collectionName, collectionType } = req.body;
+    const { authId, collectionName, inviteType } = req.body;
     const photos = req.files.photos;
 
     let photosArr = [];
@@ -39,7 +39,7 @@ const AddCollectionController = async (req, res) => {
     const savedPost = await collectionModel.create({
       authId,
       collectionName,
-      collectionType,
+      inviteType,
       photos: photosArr,
     });
 
@@ -113,7 +113,7 @@ const AddMorePhotosController = async (req, res) => {
 // GET METHOD
 const GetCollectionController = async (req, res) => {
   try {
-    const { authId } = req.query; // Access authId from query parameters
+    const { authId } = req.query;
     const details = await collectionModel.find({ authId });
     res.status(200).json({
       message: "Get collection details successfully",

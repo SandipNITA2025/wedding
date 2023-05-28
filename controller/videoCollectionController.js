@@ -4,14 +4,14 @@ const cloudinary = require("../utils/cloudinary");
 // POST METHOD
 const AddVideoCollectionController = async (req, res) => {
   try {
-    const { authId, VideoCollectionName } = req.body;
+    const { authId, VideoCollectionName, inviteType } = req.body;
     const videos = req.files.videos;
 
     let videosArr = [];
     if (Array.isArray(videos)) {
       for (const photo of videos) {
         const result = await cloudinary.uploader.upload(photo.tempFilePath, {
-            resource_type: "video",
+          resource_type: "video",
           folder: "Video_Collections",
           public_id: `video_${Date.now()}`,
         });
@@ -41,6 +41,7 @@ const AddVideoCollectionController = async (req, res) => {
     const savedPost = await collectionModel.create({
       authId,
       VideoCollectionName,
+      inviteType,
       videos: videosArr,
     });
 
@@ -67,7 +68,7 @@ const AddMorevideosController = async (req, res) => {
     if (Array.isArray(videos)) {
       for (const video of videos) {
         const result = await cloudinary.uploader.upload(video.tempFilePath, {
-            resource_type: "video",
+          resource_type: "video",
           folder: "Video_Collections",
           public_id: `video_${Date.now()}`,
         });

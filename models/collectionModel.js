@@ -10,7 +10,7 @@ const collectionSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    collectionType: {
+    inviteType: {
       type: String,
       required: false,
     },

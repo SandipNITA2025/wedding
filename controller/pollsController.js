@@ -4,7 +4,7 @@ const Poll = require("../models/pollsModel");
 
 // POST: Create a new poll
 router.post("/polls", async (req, res) => {
-  const { authId, question, options } = req.body;
+  const { authId,inviteType, question, options } = req.body;
 
   try {
     // Check if options array is provided
@@ -15,6 +15,7 @@ router.post("/polls", async (req, res) => {
     // Create a new poll
     const poll = new Poll({
       authId,
+      inviteType,
       question,
       options: options.map((option) => ({ text: option, count: 0 })),
     });

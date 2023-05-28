@@ -10,7 +10,7 @@ const videoCollectionSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    VideoCollectionType: {
+    inviteType: {
       type: String,
       required: false,
     },

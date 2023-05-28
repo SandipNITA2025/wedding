@@ -4,6 +4,10 @@ const PollsSchema = new mongoose.Schema(
   {
     authId: {
       type: String,
+      required: true,
+    },
+    inviteType: {
+      type: String,
       required: false,
     },
     question: {
