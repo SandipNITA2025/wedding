@@ -4,7 +4,7 @@ const cloudinary = require("../utils/cloudinary");
 // POST METHOD:
 const addDetailsController = async (req, res) => {
   try {
-    const { messages } = req.body;
+    const { authId,messages } = req.body;
 
     if (!req.files || !req.files.photo) {
       return res.status(400).json({ message: "No file uploaded" });
@@ -17,6 +17,7 @@ const addDetailsController = async (req, res) => {
     });
 
     const savedPost = await weddingWelcomeDetails.create({
+      authId,
       messages,
       photo: {
         public_id: result.public_id,

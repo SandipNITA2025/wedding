@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 // Wedding event model:
 const EventSchema = new mongoose.Schema(
   {
+    authId: {
+      type: String,
+      required: true,
+    },
     venue: {
       type: String,
       required: true,

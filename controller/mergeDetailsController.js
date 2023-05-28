@@ -3,12 +3,20 @@ const weddingWelcomeDetails = require("../models/welcomeModel");
 
 // GET METHOD
 const getMergedDetailsController = async (req, res) => {
+  const { authId } = req.query;
+
   try {
     const mergedData = await weddingWelcomeDetails.aggregate([
       {
+        $match: {
+          authId: authId
+        }
+      },
+      {
         $lookup: {
           from: "eventdetails",
-          pipeline: [],
+          localField: "authId",
+          foreignField: "authId",
           as: "eventDetails",
         },
       },
@@ -37,3 +45,5 @@ const getMergedDetailsController = async (req, res) => {
 };
 
 module.exports = { getMergedDetailsController };
+
+

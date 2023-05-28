@@ -3,15 +3,19 @@ const mongoose = require("mongoose");
 //Welcome message model:
 const PostSchema = new mongoose.Schema(
   {
+    authId: {
+      type: String,
+      required: true,
+    },
     messages: {
       type: [String],
       required: true,
       validate: {
-        validator: function(arr) {
+        validator: function (arr) {
           return arr.length > 0;
         },
-        message: 'There must be at least one message.'
-      }
+        message: "There must be at least one message.",
+      },
     },
     photo: {
       public_id: {
@@ -22,12 +26,9 @@ const PostSchema = new mongoose.Schema(
         type: String,
         required: false,
       },
-    }
+    },
   },
   { timestamps: true }
 );
 
 module.exports = mongoose.model("weddingWelcomeDetails", PostSchema);
-
-
-

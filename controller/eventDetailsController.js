@@ -4,7 +4,7 @@ const cloudinary = require("../utils/cloudinary");
 // POST METHOD
 const eventDetailsController = async (req, res) => {
   try {
-    const { venue, location, date, time } = req.body;
+    const { authId,venue, location, date, time } = req.body;
     const photos = req.files.photos;
 
     let photosArr = [];
@@ -37,6 +37,7 @@ const eventDetailsController = async (req, res) => {
     }
 
     const savedPost = await eventDetails.create({
+      authId,
       venue,
       location,
       date,
