@@ -5,11 +5,12 @@ Wedding Application APi:
 End Point: http://localhost:8500/api/welcomemessages
 
 {
-"messages":[
+    "authId":(____),
+    "messages":[
             "hello",
             "there"
             ],
-"photo":"single photo"
+    "photo":"single photo"
                 
 }
       
@@ -18,6 +19,7 @@ End Point: http://localhost:8500/api/welcomemessages
  End point: http://localhost:8500/api/weddingeventdetails 
  
  {
+    "authId":(_____),
     "venue":"Delhi",
     "location":"noida",
     "date":"2023-05-05",
@@ -38,13 +40,7 @@ End Point: http://localhost:8500/api/welcomemessages
 2. GET | getalluser -> http://localhost:8500/api/adduser
 
 
-3. POST & GET | welcome  -> http://localhost:8500/api/welcomemessages
-
-
-4. POST & GET | event details  -> http://localhost:8500/api/weddingeventdetails
-
-
-5. GET | MERGE DETAILS -> http://localhost:8500/api/mergedetails
+5. GET | MERGE DETAILS -> http://localhost:8500/api/mergedetails?authId=6464855699641087a53b46e0
 
 
 6. POST | REGISTER -> http://localhost:8500/api/auth/register
@@ -73,7 +69,7 @@ End Point: http://localhost:8500/api/welcomemessages
              {
                 authId:"(login _id)", 
                 collectionName:"Anything",
-                collectionType:"general/close"
+                inviteType:"general/close"
                 photos:{
                     multiple files
                 }
@@ -109,7 +105,7 @@ POST | ADD MORE PHOTOS: -> http://localhost:8500/api/auth/add-morephoto
              {
                 authId:"(login _id)", 
                 videoCollectionName:"Anything",
-                collectionType:"general/close"
+                inviteType:"general/close"
                 videos:{
                     multiple files
                 }
@@ -135,7 +131,130 @@ POST | ADD MORE VIDEOS: -> http://localhost:8500/api/auth/add-video-more
             }
 
 
-      
+
+
+ 10. POST | POLL:
+	       API: http://localhost:8500/api/auth/polls
+		
+		//body->form data:
+			{
+                authId:________,
+                inviteType:________,
+                question:_______,
+                options:________,
+                options:________,
+                options:________,
+                options:________,
+			}
+
+
+// PUT | Update the vote count on click particular option:
+            API: http://localhost:8500/api/auth/polls/:id/vote
+
+            //Params:
+             {
+               id:"(poll _id)"
+            }
+
+            //body->form data:
+                optionIndex : (option _id),
+
+
+
+ GET | Get specific polls by authId:
+         API: http://localhost:8500/api/auth/get-polls?authId=(auth _id)
+
+	     //Params:
+             {
+               authId:"(login _id)"
+             }
+
+
+
+11. POST | Create Music playlist:
+
+        API: http://localhost:8500/api/auth/playlists
+		
+		//body->form data:
+			{
+                authId:________,
+                inviteType:__________,
+                playListName:_________,
+                playListUrl:________,
+
+			}
+
+
+GET | Get specific Playlist by authId:
+        API : http://localhost:8500/api/auth/get-playlists?authId=6464855699641087a53b46e0
+
+        //Params:
+             {
+               authId:"(login _id)"
+             }
+
+
+
+
+
+
+
+
+12. POST | Create Gift list:
+
+        API: http://localhost:8500/api/auth/giftlists
+		
+		//body->form data:
+			{
+                authId:________,
+                inviteType:__________,
+                giftName:_________,
+                receivedGift: Boolean value -> true or false,
+
+			}
+
+
+GET | Get specific Gift List by authId:
+        API : http://localhost:8500/api/auth/get-giftlists?authId=6464855699641087a53b46e0
+
+        //Params:
+             {
+               authId:"(login _id)"
+             }
+
+
+ PUT | Update receivedGift status:
+            API: http://localhost:8500/api/auth/giftlists/:id/gift
+
+            //Params:
+             {
+               id:"(giftlists _id)"
+            }
+
+            //body->form data:
+                 receivedGift: Boolean value -> true or false,,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

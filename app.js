@@ -15,11 +15,14 @@ const mergeRoute = require("./routes/mergeRoute");
 const collectionRoute = require("./routes/collectionRoute");
 const videoCollectionRoute = require("./routes/videoCollectionRoute");
 const pollsRoute = require("./routes/pollsRoute");
+const musicListRoute = require("./routes/musicListRoute");
+const gitfRoute = require("./routes/giftRoute");
 
 const app = express();
 
 // fileUpload :
 const fileUpload = require("express-fileupload");
+const musicListModel = require("./models/musicListModel");
 
 //middlewares:
 app.use(logger("dev"));
@@ -28,7 +31,6 @@ app.use(express.json({ limit: Infinity }));
 app.use(express.urlencoded({ limit: Infinity, extended: true }));
 app.use(cookieParser());
 app.use(cors());
-
 
 //MongoDB connect:
 connectDB();
@@ -58,6 +60,10 @@ app.use("/api/auth", collectionRoute);
 app.use("/api/auth", videoCollectionRoute);
 //Polls route:
 app.use("/api/auth", pollsRoute);
+//Playlist route:
+app.use("/api/auth", musicListRoute);
+//Gift LIst route:
+app.use("/api/auth", gitfRoute);
 
 //rest api:
 app.get("/", (req, res) => {

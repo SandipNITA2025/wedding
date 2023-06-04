@@ -132,8 +132,30 @@ const GetVideoCollectionController = async (req, res) => {
   }
 };
 
+
+
+
+// GET METHOD BY ID
+const GetVideoCollectionIdController = async (req, res) => {
+  try {
+
+    const details = await collectionModel.findById(req.params.id);
+    res.status(200).json({
+      message: "Get video collection  details by id successfully",
+      details,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "Error retrieving details",
+      error,
+    });
+  }
+};
+
 module.exports = {
   AddVideoCollectionController,
   AddMorevideosController,
   GetVideoCollectionController,
+  GetVideoCollectionIdController
 };

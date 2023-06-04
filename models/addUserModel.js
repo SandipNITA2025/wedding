@@ -4,7 +4,7 @@ const addUserSchema = new mongoose.Schema(
   {
     loginId: {
       type: String,
-      required: [true],
+      required: false,
     },
     guestEmail: {
       type: String,

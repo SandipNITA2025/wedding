@@ -84,11 +84,11 @@
 
 // // GET: Get a specific poll by ID
 // router.get("/polls/:id", async (req, res) => {
-//   const { authId } = req.query;
+//   const { id } = req.params;
 
 //   try {
 //     // Find the poll by ID
-//     const poll = await Poll.findById({authId});
+//     const poll = await Poll.findById(id);
 
 //     if (!poll) {
 //       return res.status(404).json({ error: "Poll not found." });

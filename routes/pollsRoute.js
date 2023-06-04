@@ -72,17 +72,29 @@ router.get("/getallpolls", async (req, res) => {
   }
 });
 
+//BY POLL ID
+router.get("/get-polls/:id", async (req, res) => {
+  try {
+    const details = await Poll.findById(req.params.id);
+    res.status(200).json({
+      message: "Get poll by id successfully",
+      details,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "Error retrieving details",
+      error,
+    });
+  }
+});
 
-
-
-
-
-// GET: Get a specific poll by ID:
+// GET: Get a specific poll by authID:
 router.get("/get-polls", async (req, res) => {
-  const { authId } = req.query; 
+  const { authId } = req.query;
 
   try {
-    const poll = await Poll.find({authId});
+    const poll = await Poll.find({ authId });
 
     if (!poll) {
       return res.status(404).json({ error: "Poll not found." });

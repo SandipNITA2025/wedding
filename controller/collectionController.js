@@ -128,8 +128,31 @@ const GetCollectionController = async (req, res) => {
   }
 };
 
+// GET METHOD
+const GetCollectionIdController = async (req, res) => {
+  try {
+
+    const details = await collectionModel.findById(req.params.id);
+    res.status(200).json({
+      message: "Get collection  details by id successfully",
+      details,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "Error retrieving details",
+      error,
+    });
+  }
+};
+
+
+
+
+
 module.exports = {
   AddCollectionController,
   AddMorePhotosController,
   GetCollectionController,
+  GetCollectionIdController
 };

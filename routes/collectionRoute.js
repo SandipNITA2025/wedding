@@ -3,6 +3,7 @@ const {
   AddCollectionController,
   GetCollectionController,
   AddMorePhotosController,
+  GetCollectionIdController
 } = require("../controller/collectionController");
 
 const router = express.Router();
@@ -16,5 +17,7 @@ router.post("/add-morephoto", AddMorePhotosController);
 
 //GET || COLLECTION DETAILS:
 router.get("/get-collection", GetCollectionController);
+//GET || COLLECTION DETAILS:
+router.get("/get-collection/:id", GetCollectionIdController);
 
 module.exports = router;
