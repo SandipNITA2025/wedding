@@ -236,6 +236,27 @@ GET | Get specific Gift List by authId:
 
 
 
+13.  POST | Create Calender Events:
+                API -> http://localhost:8500/api/auth/events
+
+                //body->form data:
+                {
+                    authId:________,
+                    inviteType:__________,
+                    eventName:________,
+                    eventLocation:________,
+                    eventTime:__________,
+                    eventDate:_________,
+
+                }
+
+    GET | Calender Events:
+            API-> http://localhost:8500/api/auth/get-events?authId=6464855699641087a53b46e0
+
+            //Params:
+             {
+               authId:"(login _id)"
+             }
 
 
 

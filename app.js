@@ -17,6 +17,7 @@ const videoCollectionRoute = require("./routes/videoCollectionRoute");
 const pollsRoute = require("./routes/pollsRoute");
 const musicListRoute = require("./routes/musicListRoute");
 const gitfRoute = require("./routes/giftRoute");
+const calenderRoute =require("./routes/calenderRoute")
 
 const app = express();
 
@@ -64,6 +65,8 @@ app.use("/api/auth", pollsRoute);
 app.use("/api/auth", musicListRoute);
 //Gift LIst route:
 app.use("/api/auth", gitfRoute);
+//Calender events route:
+app.use("/api/auth", calenderRoute);
 
 //rest api:
 app.get("/", (req, res) => {
