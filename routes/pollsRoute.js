@@ -29,7 +29,25 @@ router.post("/polls", async (req, res) => {
       .json({ error: "An error occurred while creating the poll." });
   }
 });
+// GET: Get a specific poll by authID:
+router.get("/get-polls", async (req, res) => {
+  const { authId } = req.query;
 
+  try {
+    const poll = await Poll.find({ authId });
+
+    if (!poll) {
+      return res.status(404).json({ error: "Poll not found." });
+    }
+
+    res.json(poll);
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ error: "An error occurred while fetching the poll." });
+  }
+});
 // PUT: Update the vote count
 router.put("/polls/:id/vote", async (req, res) => {
   const { id } = req.params;
@@ -89,24 +107,6 @@ router.get("/get-polls/:id", async (req, res) => {
   }
 });
 
-// GET: Get a specific poll by authID:
-router.get("/get-polls", async (req, res) => {
-  const { authId } = req.query;
 
-  try {
-    const poll = await Poll.find({ authId });
-
-    if (!poll) {
-      return res.status(404).json({ error: "Poll not found." });
-    }
-
-    res.json(poll);
-  } catch (error) {
-    console.error(error);
-    res
-      .status(500)
-      .json({ error: "An error occurred while fetching the poll." });
-  }
-});
 
 module.exports = router;

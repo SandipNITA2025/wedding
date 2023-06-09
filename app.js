@@ -18,6 +18,7 @@ const pollsRoute = require("./routes/pollsRoute");
 const musicListRoute = require("./routes/musicListRoute");
 const gitfRoute = require("./routes/giftRoute");
 const calenderRoute =require("./routes/calenderRoute")
+const count = require('./routes/count')
 
 const app = express();
 
@@ -67,6 +68,8 @@ app.use("/api/auth", musicListRoute);
 app.use("/api/auth", gitfRoute);
 //Calender events route:
 app.use("/api/auth", calenderRoute);
+//Calender events route:
+app.use("/api/auth", count);
 
 //rest api:
 app.get("/", (req, res) => {
