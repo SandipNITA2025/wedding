@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-//Welcome message model:
 const CalenderSchema = new mongoose.Schema(
   {
     authId: {
@@ -19,7 +18,7 @@ const CalenderSchema = new mongoose.Schema(
         },
         eventLocation: {
           type: String,
-          required: false,
+          required: true,
         },
         eventTime: {
           type: String,
