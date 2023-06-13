@@ -1,5 +1,7 @@
 Wedding Application APi:
 
+API-> https://wedding-production-e6b8.up.railway.app
+
 
 1. welcome details messages payload  
 End Point: http://localhost:8500/api/welcomemessages

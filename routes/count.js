@@ -39,16 +39,16 @@ router.get("/statistics", async (req, res) => {
       musicPlaylistCountPromise,
     ]);
 
-    const result = {
-      photoCount: photoCount.length > 0 ? photoCount[0].total : 0,
-      videoCount: videoCount.length > 0 ? videoCount[0].total : 0,
-      pollCount,
-      giftCount,
-      userCount,
-      musicPlaylistCount,
-    };
+    const results = [
+      { name: "photoCount", value: photoCount.length > 0 ? photoCount[0].total : 0 },
+      { name: "videoCount", value: videoCount.length > 0 ? videoCount[0].total : 0 },
+      { name: "pollCount", value: pollCount },
+      { name: "giftCount", value: giftCount },
+      { name: "userCount", value: userCount },
+      { name: "musicPlaylistCount", value: musicPlaylistCount },
+    ];
 
-    res.status(200).json(result);
+    res.status(200).json(results);
   } catch (error) {
     console.error(error);
     res.status(500).json({
