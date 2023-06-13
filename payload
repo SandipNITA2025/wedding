@@ -258,12 +258,16 @@ GET | Get specific Gift List by authId:
                authId:"(login _id)"
              }
 
+14. GET | Images, Videos, polls Count:
+
+        API : http://localhost:8500/api/auth/statistics?authId=6464855699641087a53b46e0
+
+        
 
 
 
 
-
-
+ 
 
 
 

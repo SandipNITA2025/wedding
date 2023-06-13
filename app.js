@@ -17,14 +17,13 @@ const videoCollectionRoute = require("./routes/videoCollectionRoute");
 const pollsRoute = require("./routes/pollsRoute");
 const musicListRoute = require("./routes/musicListRoute");
 const gitfRoute = require("./routes/giftRoute");
-const calenderRoute =require("./routes/calenderRoute")
-const count = require('./routes/count')
+const calenderRoute = require("./routes/calenderRoute");
+const count = require("./routes/count");
 
 const app = express();
 
 // fileUpload :
 const fileUpload = require("express-fileupload");
-const musicListModel = require("./models/musicListModel");
 
 //middlewares:
 app.use(logger("dev"));
