@@ -141,7 +141,7 @@ const GetVideoCollectionIdController = async (req, res) => {
 
     const details = await collectionModel.findById(req.params.id);
     res.status(200).json({
-      message: "Get video collection  details by id successfully",
+      message: "Get video collection details by id successfully",
       details,
     });
   } catch (error) {
