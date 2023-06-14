@@ -40,11 +40,17 @@ const router = express.Router();
 //   }
 // });
 
-
 // POST endpoint to create a new event in the calendar
 router.post("/events", async (req, res) => {
   try {
-    const { authId, inviteType, eventName, eventLocation, eventTime, eventDate } = req.body;
+    const {
+      authId,
+      inviteType,
+      eventName,
+      eventLocation,
+      eventTime,
+      eventDate,
+    } = req.body;
 
     const event = {
       inviteType,
@@ -70,7 +76,6 @@ router.post("/events", async (req, res) => {
   }
 });
 
-
 // GET endpoint to retrieve all events from the calendar
 router.get("/get-events", async (req, res) => {
   try {
@@ -83,6 +88,28 @@ router.get("/get-events", async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Failed to retrieve events" });
+  }
+});
+// GET events by Id from the calendar
+router.get("/get-events/:id", async (req, res) => {
+  try {
+    const eventId = req.params.id;
+    const calendar = await CalenderModel.findOne(
+      { "events._id": eventId },
+      { events: { $elemMatch: { _id: eventId } } }
+    );
+
+    if (calendar) {
+      res.status(200).json({
+        message: "Get event details successfully",
+        event: calendar.events[0],
+      });
+    } else {
+      res.status(404).json({ error: "Event not found" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to retrieve event" });
   }
 });
 
