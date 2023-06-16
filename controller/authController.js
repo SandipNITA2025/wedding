@@ -26,10 +26,16 @@ const loginController = async (req, res) => {
       expiresIn: "1h",
     });
 
-    // Response with token
+    // Response with token and login details
     res.status(200).json({
       success: true,
       token,
+      user: {
+        authName: user.authName,
+        authEmail: user.authEmail,
+        authId: user._id,
+        // Include any other desired login details
+      },
     });
   } catch (error) {
     console.log(error);
@@ -74,8 +80,36 @@ const registerController = async (req, res) => {
   }
 };
 
-const testController = async (req, res) => {
+// 3. GET || USER DETAILS BY EMAIL:
+const getUserDetailsByEmail = async (req, res) => {
+  try {
+    const authEmail = req.params.authEmail; // Assuming you pass the user's email as a URL parameter
+    const user = await authModel.findOne({ authEmail });
+    
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+    
+    res.status(200).json({
+      success: true,
+      user: {
+        userId: user._id,
+        authName: user.authName,
+        authEmail: user.authEmail,
+        // Include any other desired user details
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      error,
+    });
+  }
+};
+
+const protectedController = async (req, res) => {
   res.send("Protected test route");
 };
 
-module.exports = { loginController, registerController, testController };
+module.exports = { loginController, registerController, protectedController, getUserDetailsByEmail };

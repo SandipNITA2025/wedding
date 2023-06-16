@@ -2,7 +2,8 @@ const express = require("express");
 const {
   loginController,
   registerController,
-  testController,
+  protectedController,
+  getUserDetailsByEmail,
 } = require("../controller/authController");
 const authenticateToken = require("../middlewares/authenticateToken ");
 
@@ -11,15 +12,9 @@ const router = express.Router();
 // Public routes
 router.post("/login", loginController);
 router.post("/register", registerController);
+router.get("/logdetails/:authEmail", getUserDetailsByEmail);
 
 // Protected routes
-router.get(
-  "/protected",
-  authenticateToken,
-  (req, res) => {
-    res.json({ message: "Protected route accessed successfully" });
-  },
-  testController
-);
+router.get("/protected", authenticateToken, protectedController);
 
 module.exports = router;
