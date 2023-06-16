@@ -1,25 +1,17 @@
 const express = require("express");
-const {
-  loginController,
-  registerController,
-  testController,
-} = require("../controller/authController");
-const authenticateToken = require("../middlewares/authenticateToken ");
+const { loginController, registerController } = require("../controller/authController");
 
+
+
+//router object:
 const router = express.Router();
 
-// Public routes
-router.post("/login", loginController);
-router.post("/register", registerController);
+//routers:
+// 1. POST || LOGIN:
+router.post('/login', loginController)
 
-// Protected routes
-router.get(
-  "/protected",
-  authenticateToken,
-  (req, res) => {
-    res.json({ message: "Protected route accessed successfully" });
-  },
-  testController
-);
+
+// 2. POST || REGISTER:
+router.post('/register', registerController)
 
 module.exports = router;
