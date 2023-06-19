@@ -1,8 +1,8 @@
-const jwt = require("jsonwebtoken");
-const { comparePass, hashPassword } = require("../helper/authHelper");
-const authModel = require("../models/authModel");
-const crypto = require("crypto");
-const secretKey = "AZMOIHTF&^16^%&@^*&56UTGUGFWY!DUYWUD&^%!";
+const jwt = require('jsonwebtoken');
+const { comparePass, hashPassword } = require('../helper/authHelper');
+const authModel = require('../models/authModel');
+const crypto = require('crypto');
+const secretKey = 'AZMOIHTF&^16^%&@^*&56UTGUGFWY!DUYWUD&^%!';
 
 // 1. POST || LOGIN:
 const loginController = async (req, res) => {
@@ -10,21 +10,24 @@ const loginController = async (req, res) => {
     const { authEmail, authPassword } = req.body;
     const user = await authModel.findOne({ authEmail });
     if (!user) {
-      return res.status(404).send("User not found");
+      return res.status(404).send('User not found');
     }
 
     const match = await comparePass(authPassword, user.authPassword);
     if (!match) {
       return res.status(200).send({
         success: false,
-        message: "Password not matched",
+        message: 'Password not matched',
       });
     }
 
     // Generate JWT token
     const token = await jwt.sign({ userId: user._id }, secretKey, {
-      expiresIn: "1h",
+      expiresIn: '1h',
     });
+
+    // Store the user ID in the session
+    req.session.userId = user._id;
 
     // Response with token and login details
     res.status(200).json({
@@ -55,7 +58,7 @@ const registerController = async (req, res) => {
     if (existingUser) {
       return res.status(200).send({
         success: true,
-        message: "Already registered",
+        message: 'Already registered',
       });
     }
 
@@ -68,7 +71,7 @@ const registerController = async (req, res) => {
 
     res.status(201).json({
       success: true,
-      message: "Registered successfully",
+      message: 'Registered successfully',
       newUser,
     });
   } catch (error) {
@@ -85,11 +88,11 @@ const getUserDetailsByEmail = async (req, res) => {
   try {
     const authEmail = req.params.authEmail; // Assuming you pass the user's email as a URL parameter
     const user = await authModel.findOne({ authEmail });
-    
+
     if (!user) {
-      return res.status(404).send("User not found");
+      return res.status(404).send('User not found');
     }
-    
+
     res.status(200).json({
       success: true,
       user: {
@@ -109,7 +112,7 @@ const getUserDetailsByEmail = async (req, res) => {
 };
 
 const protectedController = async (req, res) => {
-  res.send("Protected test route");
+  res.send('Protected test route');
 };
 
 module.exports = { loginController, registerController, protectedController, getUserDetailsByEmail };

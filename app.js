@@ -20,13 +20,14 @@ const gitfRoute = require("./routes/giftRoute");
 const calenderRoute = require("./routes/calenderRoute");
 const count = require("./routes/count");
 const suggestSongsRoute = require("./routes/suggestSongsRoute");
+const session = require("express-session");
 
 const app = express();
 
-// fileUpload :
+// File Upload:
 const fileUpload = require("express-fileupload");
 
-//middlewares:
+// Middlewares:
 app.use(logger("dev"));
 app.use(bodyParser.text());
 app.use(express.json({ limit: Infinity }));
@@ -34,54 +35,63 @@ app.use(express.urlencoded({ limit: Infinity, extended: true }));
 app.use(cookieParser());
 app.use(cors());
 
-//MongoDB connect:
+// MongoDB connect:
 connectDB();
 
-// fileUpload
+// File Upload
 app.use(
   fileUpload({
     useTempFiles: true,
   })
 );
 
-//routes:
+// Configure session middleware
+app.use(
+  session({
+    secret: "aA@pjahcbjhahfh@%gvhag#$hbdc&jbjH!", // Replace with your own secret key
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+
+// Routes:
 
 // WELCOME DETAILS
 app.use("/api/welcomemessages", welcomeDetails);
-//EVENT DETAILS
+// EVENT DETAILS
 app.use("/api/weddingeventdetails", eventDetails);
-//merge above two api details:
+// Merge above two API details:
 app.use("/api/mergedetails", mergeRoute);
-//auth route:
+// Auth route:
 app.use("/api/auth", authRoute);
-//ADD NEW USER
+// ADD NEW USER
 app.use("/api/adduser", addUser);
-//collection route:
+// Collection route:
 app.use("/api/auth", collectionRoute);
-//Video collection route:
+// Video collection route:
 app.use("/api/auth", videoCollectionRoute);
-//Polls route:
+// Polls route:
 app.use("/api/auth", pollsRoute);
-//Playlist route:
+// Playlist route:
 app.use("/api/auth", musicListRoute);
-//Gift LIst route:
+// Gift List route:
 app.use("/api/auth", gitfRoute);
-//Calender events route:
+// Calendar events route:
 app.use("/api/auth", calenderRoute);
-//Count route:
+// Count route:
 app.use("/api/auth", count);
-//Suggestion Playlists:
+// Suggestion Playlists:
 app.use("/api/auth", suggestSongsRoute);
 
-//rest api:
+// Rest API:
 app.get("/", (req, res) => {
   res.send("<h1>Hello World</h1>");
 });
 
-//PORT
+// PORT
 const PORT = process.env.PORT || 8500;
 
-//run server:
+// Run server:
 app.listen(PORT, () => {
-  console.log(`server running on ${process.env.NODE_ENV} mode, ${PORT}`);
+  console.log(`Server running on ${process.env.NODE_ENV} mode, ${PORT}`);
 });
