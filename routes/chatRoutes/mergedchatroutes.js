@@ -5,53 +5,29 @@ const router = express.Router();
 
 // Import your models
 const WelcomeDetails = require("../../models/chatConvoModel/welcomeModel");
-const venue = require("../../models/chatConvoModel/venueModel");
-const dateTime = require("../../models/chatConvoModel/dateTimeModel");
-const photosVideos = require("../../models/chatConvoModel/photosVideos");
+const Venue = require("../../models/chatConvoModel/venueModel");
+const DateTime = require("../../models/chatConvoModel/dateTimeModel");
+const PhotosVideos = require("../../models/chatConvoModel/photosVideos");
 
 router.get("/mergedchatroutes", async (req, res) => {
   const { authId } = req.query;
 
   try {
-    const mergedData = await WelcomeDetails.aggregate([
-      {
-        $match: {
-          authId: authId,
-        },
-      },
-      {
-        $lookup: {
-          from: "venueschemas",
-          localField: "authId",
-          foreignField: "authId",
-          as: "venue",
-        },
-      },
-      {
-        $lookup: {
-          from: "datetimeschemas",
-          localField: "authId",
-          foreignField: "authId",
-          as: "dateTime",
-        },
-      },
-      {
-        $lookup: {
-          from: "photosvideosschemas",
-          localField: "authId",
-          foreignField: "authId",
-          as: "photosVideos",
-        },
-      },
-    ]);
+    const welcomeDetails = await WelcomeDetails.findOne({ authId });
+    const venue = await Venue.findOne({ authId });
+    const dateTime = await DateTime.findOne({ authId });
+    const photosVideos = await PhotosVideos.findOne({ authId });
 
-    if (mergedData.length === 0) {
-      return res.status(404).json({ message: "No data found" });
-    }
+    const mergedData = [
+      { welcomeDetails },
+      { venue },
+      { dateTime },
+      { photosVideos },
+    ];
 
     res.status(200).json({
       message: "Merged data retrieved successfully",
-      mergedData: mergedData[0],
+      mergedData,
     });
   } catch (error) {
     console.error("Error retrieving merged data:", error);
