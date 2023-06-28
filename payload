@@ -10,8 +10,17 @@
 
           }
 
+    PUT : http://localhost:8500/api/auth/welcomemessages/:id
+        {
+           messages:,
+            photo:,
+        }
+
+
+
+
 2. VENUE AND LOCATION -> 
-            POST / GET : http://localhost:8500/api/auth/venue_location
+       POST / GET : http://localhost:8500/api/auth/venue_location
             {
               authId:,
               order:,
@@ -19,8 +28,16 @@
               location:
             }
 
+      PUT: http://localhost:8500/api/auth/venue_location/:id
+            {
+                venue:,
+              location:
+            }
+
+
+
 3. Date and Time:
-          POST / GET : http://localhost:8500/api/auth/datetimes
+        POST / GET : http://localhost:8500/api/auth/datetimes
             {
               authId:,
               order:,
@@ -28,14 +45,27 @@
               time:
             }
 
+        PUT : http://localhost:8500/api/auth/datetimes/:id
+            {
+              date:,
+              time:
+            }
+
 4. Photos and Videos:
-            POST / GET : http://localhost:8500/api/auth/photosandvideos
+        POST / GET : http://localhost:8500/api/auth/photosandvideos
             {
                 authId:,
                 order:,
                 photos:,
                 videos:
             }
+
+      // PUT request to update a specific photo or video:
+         PUT : http://localhost:8500/api/auth/photosandvideos/:id
+              {
+                photos:,
+                videos:
+              }
 
 
 
