@@ -60,12 +60,7 @@
                 videos:
             }
 
-      // PUT request to update a specific photo or video:
-         PUT : http://localhost:8500/api/auth/photosandvideos/:id
-              {
-                photos:,
-                videos:
-              }
+        
 
 
 
