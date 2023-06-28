@@ -16,6 +16,28 @@ router.post("/datetimes", async (req, res) => {
   }
 });
 
+router.put("/datetimes/:id", async (req, res) => {
+  const { id } = req.params;
+  const { date, time } = req.body;
+
+  try {
+    const dateTime = await DateTime.findById(id);
+    if (!dateTime) {
+      return res.status(404).json({ error: "DateTime entry not found" });
+    }
+
+    dateTime.date = date;
+    dateTime.time = time;
+
+    await dateTime.save();
+
+    res.status(200).json(dateTime);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to update DateTime entry" });
+  }
+});
+
 // GET request to retrieve all DateTime entries
 router.get("/datetimes", async (req, res) => {
   const { authId } = req.query;

@@ -13,7 +13,7 @@ router.get("/mergedchatroutes", async (req, res) => {
   const { authId } = req.query;
 
   try {
-    const welcomeDetails = await WelcomeDetails.findOne({ authId });
+    const welcomeDetails = await WelcomeDetails.find({ authId });
     const venue = await Venue.findOne({ authId });
     const dateTime = await DateTime.findOne({ authId });
     const photosVideos = await PhotosVideos.findOne({ authId });
