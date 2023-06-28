@@ -7,8 +7,8 @@ const logger = require("morgan");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const connectDB = require("./config/mongoDb");
-const welcomeDetails = require("./routes/welcomeDetails");
-const eventDetails = require("./routes/eventDetails");
+const welcomeDetails = require("./routes/chatRoutes/welcomeDetails");
+const eventDetails = require("./routes/chatRoutes/eventDetails");
 const addUser = require("./routes/addUser");
 const authRoute = require("./routes/authRoute");
 const mergeRoute = require("./routes/mergeRoute");
@@ -21,6 +21,12 @@ const calenderRoute = require("./routes/calenderRoute");
 const count = require("./routes/count");
 const suggestSongsRoute = require("./routes/suggestSongsRoute");
 const session = require("express-session");
+
+// ChatBot Route paths:
+const datetimes = require("./routes/chatRoutes/dateTimeRoute");
+const venuelocations = require("./routes/chatRoutes/venueRoute");
+const photosAndvideos = require("./routes/chatRoutes/photosVideosRoute");
+const mergedChatRoutes = require("./routes/chatRoutes/mergedchatroutes");
 
 const app = express();
 
@@ -48,7 +54,7 @@ app.use(
 // Configure session middleware
 app.use(
   session({
-    secret: "aA@pjahcbjhahfh@%gvhag#$hbdc&jbjH!", // Replace with your own secret key
+    secret: "aA@pjahcbjhahfh@%gvhag#$hbdc&jbjH!",
     resave: false,
     saveUninitialized: true,
   })
@@ -56,8 +62,13 @@ app.use(
 
 // Routes:
 
-// WELCOME DETAILS
-app.use("/api/welcomemessages", welcomeDetails);
+// Chatbot Routes:
+app.use("/api/auth", welcomeDetails);
+app.use("/api/auth", datetimes);
+app.use("/api/auth", venuelocations);
+app.use("/api/auth", photosAndvideos);
+app.use("/api/auth", mergedChatRoutes);
+
 // EVENT DETAILS
 app.use("/api/weddingeventdetails", eventDetails);
 // Merge above two API details:

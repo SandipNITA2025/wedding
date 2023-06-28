@@ -1,10 +1,10 @@
-const weddingWelcomeDetails = require("../models/welcomeModel");
+const weddingWelcomeDetails = require("../models/chatConvoModel/welcomeModel");
 const cloudinary = require("../utils/cloudinary");
 
 // POST METHOD:
 const addDetailsController = async (req, res) => {
   try {
-    const { authId,messages } = req.body;
+    const { authId,order,messages } = req.body;
 
     if (!req.files || !req.files.photo) {
       return res.status(400).json({ message: "No file uploaded" });
@@ -18,6 +18,7 @@ const addDetailsController = async (req, res) => {
 
     const savedPost = await weddingWelcomeDetails.create({
       authId,
+      order,
       messages,
       photo: {
         public_id: result.public_id,
@@ -43,8 +44,9 @@ const addDetailsController = async (req, res) => {
 
 //GET METHOD:
 const getDetailsController = async (req, res) => {
+  const { authId } = req.query;
   try {
-    const details = await weddingWelcomeDetails.find();
+    const details = await weddingWelcomeDetails.find({authId});
     res.status(200).json({
       message: "get successfully",
       details,

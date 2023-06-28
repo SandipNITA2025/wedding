@@ -23,7 +23,7 @@ const loginController = async (req, res) => {
 
     // Generate JWT token
     const token = await jwt.sign({ userId: user._id }, secretKey, {
-      expiresIn: '1h',
+      expiresIn: '3h',
     });
 
     // Store the user ID in the session

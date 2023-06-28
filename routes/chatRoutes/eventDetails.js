@@ -1,5 +1,8 @@
 const express = require("express");
-const  {eventDetailsController, getEventController}  = require("../controller/eventDetailsController");
+const {
+  eventDetailsController,
+  getEventController,
+} = require("../../controller/eventDetailsController");
 
 const router = express.Router();
 
@@ -7,11 +10,7 @@ const router = express.Router();
 //POST || EVENT DETAILS:
 router.post("/", eventDetailsController);
 
-
 //GET || EVENT DETAILS:
 router.get("/", getEventController);
-
-
-
 
 module.exports = router;

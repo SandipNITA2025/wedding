@@ -1,5 +1,5 @@
-const eventDetails = require("../models/eventModel");
-const weddingWelcomeDetails = require("../models/welcomeModel");
+const eventDetails = require("../models/chatConvoModel/eventModel");
+const weddingWelcomeDetails = require("../models/chatConvoModel/welcomeModel");
 
 // GET METHOD
 const getMergedDetailsController = async (req, res) => {

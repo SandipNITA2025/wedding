@@ -1,10 +1,10 @@
-const eventDetails = require("../models/eventModel");
+const eventDetails = require("../models/chatConvoModel/eventModel");
 const cloudinary = require("../utils/cloudinary");
 
 // POST METHOD
 const eventDetailsController = async (req, res) => {
   try {
-    const { authId,venue, location, date, time } = req.body;
+    const { authId, venue, location, date, time } = req.body;
     const photos = req.files.photos;
 
     let photosArr = [];
@@ -12,9 +12,8 @@ const eventDetailsController = async (req, res) => {
       for (const photo of photos) {
         const result = await cloudinary.uploader.upload(photo.tempFilePath, {
           folder: "WeddingEvent",
-          public_id: `photo_${Date.now()}`, 
+          public_id: `photo_${Date.now()}`,
         });
-
         photosArr.push({
           public_id: result.public_id,
           url: result.secure_url,
@@ -32,7 +31,7 @@ const eventDetailsController = async (req, res) => {
         public_id: result.public_id,
         url: result.secure_url,
         size: result.bytes,
-        name: photos.name, 
+        name: photos.name,
       });
     }
 
@@ -57,7 +56,6 @@ const eventDetailsController = async (req, res) => {
     });
   }
 };
-
 
 // GET METHOD
 const getEventController = async (req, res) => {

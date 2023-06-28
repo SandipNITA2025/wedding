@@ -1,3 +1,69 @@
+-------------------------NEW API FOR CHATBOT:-----------------------
+
+1. WELCOME MSG -> 
+		POST / GET : http://localhost:8500/api/auth/welcomemessages
+          {
+            authId:,
+            order:,
+            messages:,
+            photo:,
+
+          }
+
+2. VENUE AND LOCATION -> 
+            POST / GET : http://localhost:8500/api/auth/venue_location
+            {
+              authId:,
+              order:,
+              venue:,
+              location:
+            }
+
+3. Date and Time:
+          POST / GET : http://localhost:8500/api/auth/datetimes
+            {
+              authId:,
+              order:,
+              date:,
+              time:
+            }
+
+4. Photos and Videos:
+            POST / GET : http://localhost:8500/api/auth/photosandvideos
+            {
+                authId:,
+                order:,
+                photos:,
+                videos:
+            }
+
+
+
+5. Merged API:
+          GET : http://localhost:8500/api/auth/mergedchatroutes?authId=6464855699641087a53b46e0
+          
+
+
+-------------------------NEW API FOR CHATBOT:-----------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Wedding Application APi:
 
 API-> https://wedding-production-e6b8.up.railway.app

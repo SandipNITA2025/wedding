@@ -20,7 +20,6 @@ const authenticateToken = (req, res, next) => {
     // Verify and decode the token
     const decodedToken = jwt.verify(token, secretKey);
 
-    // Attach the decoded token to the request object for further use
     req.user = decodedToken;
 
     // Move to the next middleware or route handler
