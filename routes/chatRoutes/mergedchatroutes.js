@@ -14,9 +14,9 @@ router.get("/mergedchatroutes", async (req, res) => {
 
   try {
     const welcomeDetails = await WelcomeDetails.find({ authId });
-    const venue = await Venue.findOne({ authId });
-    const dateTime = await DateTime.findOne({ authId });
-    const photosVideos = await PhotosVideos.findOne({ authId });
+    const venue = await Venue.find({ authId });
+    const dateTime = await DateTime.find({ authId });
+    const photosVideos = await PhotosVideos.find({ authId });
 
     const mergedData = [
       { welcomeDetails },
