@@ -22,6 +22,9 @@ const count = require("./routes/count");
 const suggestSongsRoute = require("./routes/suggestSongsRoute");
 const session = require("express-session");
 
+// TEST MODEL:
+const testkatest = require("./routes/chatRoutes/chatRouter");
+
 // ChatBot Route paths:
 const datetimes = require("./routes/chatRoutes/dateTimeRoute");
 const venuelocations = require("./routes/chatRoutes/venueRoute");
@@ -68,6 +71,9 @@ app.use("/api/auth", datetimes);
 app.use("/api/auth", venuelocations);
 app.use("/api/auth", photosAndvideos);
 app.use("/api/auth", mergedChatRoutes);
+
+// TEST
+app.use("/api/auth", testkatest);
 
 // EVENT DETAILS
 app.use("/api/weddingeventdetails", eventDetails);

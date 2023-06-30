@@ -109,5 +109,4 @@ router.get("/photosandvideos", async (req, res) => {
   }
 });
 
-
 module.exports = router;
