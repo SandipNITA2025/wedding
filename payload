@@ -1,71 +1,58 @@
 -------------------------NEW API FOR CHATBOT:-----------------------
 
-1. WELCOME MSG -> 
-		POST / GET : http://localhost:8500/api/auth/welcomemessages
+**LIVE LINK : https://wedding-production-e6b8.up.railway.app
+
+1. GET API : http://localhost:8500/api/auth/chatdetails?authId=6464855699641087a53b46e0
+
+
+2. POST API : http://localhost:8500/api/auth/chatdetails
+
+                    {
+        "order": 0,
+        "authId": "6464855699641087a53b46e0",
+        "photos": [
           {
-            authId:,
-            order:,
-            messages:,
-            photo:,
-
+            "public_id": "photo1",
+            "url": "https://example.com/photo1.jpg",
+            "size": 1024,
+            "name": "Photo 1"
+          },
+          {
+            "public_id": "photo2",
+            "url": "https://example.com/photo2.jpg",
+            "size": 2048,
+            "name": "Photo 2"
           }
-
-    PUT : http://localhost:8500/api/auth/welcomemessages/:id
-        {
-           messages:,
-            photo:,
+        ],
+        "videos": [
+          {
+            "public_id": "video1",
+            "url": "https://example.com/video1.mp4",
+            "size": 5120,
+            "name": "Video 1"
+          }
+        ],
+        "messages": [
+          "Message 1",
+          "Message 2"
+        ],
+        "location": ["Wedding Venue"],
+        "date": "2023-07-01",
+        "time": "18:00",
+        "options": [
+          {
+            "name": "Option 1",
+            "order": 1
+          },
+          {
+            "name": "Option 2",
+            "order": 2
+          }
+        ],
+        "textInput": {
+          "order": 456
         }
-
-
-
-
-2. VENUE AND LOCATION -> 
-       POST / GET : http://localhost:8500/api/auth/venue_location
-            {
-              authId:,
-              order:,
-              venue:,
-              location:
-            }
-
-      PUT: http://localhost:8500/api/auth/venue_location/:id
-            {
-                venue:,
-              location:
-            }
-
-
-
-3. Date and Time:
-        POST / GET : http://localhost:8500/api/auth/datetimes
-            {
-              authId:,
-              order:,
-              date:,
-              time:
-            }
-
-        PUT : http://localhost:8500/api/auth/datetimes/:id
-            {
-              date:,
-              time:
-            }
-
-4. Photos and Videos:
-        POST / GET : http://localhost:8500/api/auth/photosandvideos
-            {
-                authId:,
-                order:,
-                photos:,
-                videos:
-            }
-
-        
-
-
-
-5. Merged API:
-          GET : http://localhost:8500/api/auth/mergedchatroutes?authId=6464855699641087a53b46e0
+      }
           
 
 
