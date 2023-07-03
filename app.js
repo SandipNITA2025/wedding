@@ -24,6 +24,9 @@ const session = require("express-session");
 
 // TEST MODEL:
 const testkatest = require("./routes/chatRoutes/chatRouter");
+const testR = require("./Test/testRouter");
+
+
 
 // ChatBot Route paths:
 const datetimes = require("./routes/chatRoutes/dateTimeRoute");
@@ -74,6 +77,7 @@ app.use("/api/auth", mergedChatRoutes);
 
 // TEST
 app.use("/api/auth", testkatest);
+app.use("/api/auth", testR);
 
 // EVENT DETAILS
 app.use("/api/weddingeventdetails", eventDetails);
