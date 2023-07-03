@@ -4,7 +4,7 @@ const Wedding = require("../models/chatConvoModel/chatModel");
 const cloudinary = require("../utils/cloudinary");
 
 // Create a new wedding document
-router.post("/chatdetailsss", async (req, res) => {
+router.post("/chatdetails", async (req, res) => {
   try {
     const {
       authId,
@@ -32,7 +32,7 @@ router.post("/chatdetailsss", async (req, res) => {
             url: result.secure_url,
             size: result.bytes,
             name: photo.name,
-            priority: photo.priority || 0, // Include priority field
+            priority: photo.priority || 100, // Include priority field
           });
         }
       } else {
@@ -46,7 +46,7 @@ router.post("/chatdetailsss", async (req, res) => {
           url: result.secure_url,
           size: result.bytes,
           name: photos.name,
-          priority: photos.priority || 0, // Include priority field
+          priority: photos.priority || 101,
         });
       }
     }
@@ -68,7 +68,7 @@ router.post("/chatdetailsss", async (req, res) => {
             url: result.secure_url,
             size: result.bytes,
             name: video.name,
-            priority: video.priority || 0, // Include priority field
+            priority: video.priority || 102,
           });
         }
       } else {
@@ -83,7 +83,7 @@ router.post("/chatdetailsss", async (req, res) => {
           url: result.secure_url,
           size: result.bytes,
           name: videos.name,
-          priority: videos.priority || 0, // Include priority field
+          priority: videos.priority || 103, // Include priority field
         });
       }
     }
@@ -96,11 +96,11 @@ router.post("/chatdetailsss", async (req, res) => {
       order,
       messages: updatedMessages.map((message) => ({
         text: message.text || "",
-        priority: message.priority || 100,
+        priority: message.priority || 104,
       })),
       location: updatedLocation.map((loc) => ({
         url: loc.url || "",
-        priority: loc.priority || 101,
+        priority: loc.priority || 105,
       })),
       date,
       time,

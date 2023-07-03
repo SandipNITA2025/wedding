@@ -1,0 +1,85 @@
+{
+  "authId": "123456",
+  "order": 1,
+  "messages": [
+    {
+      "text": "Hello",
+      "priority": 1
+    },
+    {
+      "text": "Goodbye",
+      "priority": 2
+    }
+  ],
+  "location": [
+    {
+      "url": "location1",
+      "priority": 3
+    },
+    {
+      "url": "location2",
+      "priority": 4
+    }
+  ],
+  "textInput": {
+    "order": 1,
+    "priority": 7,
+    "toSaveToDatabse": true,
+    "databaseSaveUrl": "",
+    "databaseCallType": "POST",
+    "queryObject": "query"
+  },
+  "photos": [
+    {
+      "public_id": "photo1",
+      "url": "photo1.jpg",
+      "size": 1000,
+      "name": "Photo 1",
+      "priority": 6
+    },
+    {
+      "public_id": "photo2",
+      "url": "photo2.jpg",
+      "size": 2000,
+      "name": "Photo 2",
+      "priority": 7
+    }
+  ],
+  "videos": [
+    {
+      "public_id": "video1",
+      "url": "video1.mp4",
+      "size": 5000,
+      "name": "Video 1",
+      "priority": 8
+    },
+    {
+      "public_id": "video2",
+      "url": "video2.mp4",
+      "size": 8000,
+      "name": "Video 2",
+      "priority": 9
+    }
+  ],
+
+  "options": [
+    {
+      "name": "Option 1",
+      "order": 1,
+      "priority": 10,
+      "toSaveToDatabse": true,
+      "databaseSaveUrl": "",
+      "databaseCallType": "GET",
+      "queryObject": "",
+    },
+    {
+      "name": "Option 2",
+      "order": 2,
+      "priority": 11,
+      "toSaveToDatabse": false,
+      "databaseSaveUrl": "",
+      "databaseCallType": "",
+      "queryObject": ""
+    }
+  ],
+}

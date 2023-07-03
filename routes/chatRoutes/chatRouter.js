@@ -4,7 +4,7 @@ const Wedding = require("../../models/chatConvoModel/chatModel");
 const cloudinary = require("../../utils/cloudinary");
 
 // Create a new wedding document
-router.post("/chatdetails", async (req, res) => {
+router.post("/chatdetailsno", async (req, res) => {
   try {
     const {
       authId,
