@@ -4,7 +4,7 @@ const Wedding = require("../../models/chatConvoModel/chatModel");
 const cloudinary = require("../../utils/cloudinary");
 
 // Create a new wedding document
-router.post("/chatdetailsno", async (req, res) => {
+router.post("/chatdetails", async (req, res) => {
   try {
     const {
       authId,
@@ -32,6 +32,7 @@ router.post("/chatdetailsno", async (req, res) => {
             url: result.secure_url,
             size: result.bytes,
             name: photo.name,
+            priority: photo.priority || 100,
           });
         }
       } else {
@@ -45,6 +46,7 @@ router.post("/chatdetailsno", async (req, res) => {
           url: result.secure_url,
           size: result.bytes,
           name: photos.name,
+          priority: photos.priority || 101,
         });
       }
     }
@@ -66,6 +68,7 @@ router.post("/chatdetailsno", async (req, res) => {
             url: result.secure_url,
             size: result.bytes,
             name: video.name,
+            priority: video.priority || 102,
           });
         }
       } else {
@@ -80,15 +83,25 @@ router.post("/chatdetailsno", async (req, res) => {
           url: result.secure_url,
           size: result.bytes,
           name: videos.name,
+          priority: videos.priority || 103,
         });
       }
     }
 
+    const updatedMessages = messages || [];
+    const updatedLocation = location || [];
+
     const savedPost = await Wedding.create({
       authId,
       order,
-      messages,
-      location,
+      messages: updatedMessages.map((message) => ({
+        text: message.text || "",
+        priority: message.priority || 104,
+      })),
+      location: updatedLocation.map((loc) => ({
+        url: loc.url || "",
+        priority: loc.priority || 105,
+      })),
       date,
       time,
       options,
@@ -126,7 +139,7 @@ router.get("/chatdetails", async (req, res) => {
 });
 
 // PUT request to update a specific field of a wedding document
-router.put("/chatdetails/:id", async (req, res) => {
+router.put("/chatdetailstest/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -350,6 +363,7 @@ router.post("/chatdetails/:id/addPhotos", async (req, res) => {
           url: result.secure_url,
           size: result.bytes,
           name: photo.name,
+          priority: photo.priority || 101,
         });
       }
     } else {
@@ -363,6 +377,7 @@ router.post("/chatdetails/:id/addPhotos", async (req, res) => {
         url: result.secure_url,
         size: result.bytes,
         name: photos.name,
+        priority: photos.priority || 101,
       });
     }
 
@@ -408,6 +423,7 @@ router.post("/chatdetails/:id/addVideos", async (req, res) => {
           url: result.secure_url,
           size: result.bytes,
           name: video.name,
+          priority: video.priority || 102,
         });
       }
     } else {
@@ -422,6 +438,7 @@ router.post("/chatdetails/:id/addVideos", async (req, res) => {
         url: result.secure_url,
         size: result.bytes,
         name: videos.name,
+        priority: videos.priority || 103,
       });
     }
 
