@@ -33,6 +33,7 @@ const datetimes = require("./routes/chatRoutes/dateTimeRoute");
 const venuelocations = require("./routes/chatRoutes/venueRoute");
 const photosAndvideos = require("./routes/chatRoutes/photosVideosRoute");
 const mergedChatRoutes = require("./routes/chatRoutes/mergedchatroutes");
+const chatTitleRoute = require("./routes/chatRoutes/chatTitleRoute");
 
 const app = express();
 
@@ -74,6 +75,7 @@ app.use("/api/auth", datetimes);
 app.use("/api/auth", venuelocations);
 app.use("/api/auth", photosAndvideos);
 app.use("/api/auth", mergedChatRoutes);
+app.use("/api/auth", chatTitleRoute);
 
 // TEST
 app.use("/api/auth", testkatest);

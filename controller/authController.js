@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { comparePass, hashPassword } = require('../helper/authHelper');
-const authModel = require('../models/authModel');
-const crypto = require('crypto');
+const authModel = require('../models/authModel');;
 const secretKey = 'AZMOIHTF&^16^%&@^*&56UTGUGFWY!DUYWUD&^%!';
 
 // 1. POST || LOGIN:

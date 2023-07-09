@@ -6,29 +6,24 @@ const weddingSchema = new mongoose.Schema({
   },
   authId: {
     type: String,
-    // required: true,
   },
+  chatId: { type: String },
   photos: [
     {
       public_id: {
         type: String,
-        // required: true,
       },
       url: {
         type: String,
-        // required: true,
       },
       size: {
         type: Number,
-        // required: true,
       },
       name: {
         type: String,
-        // required: true,
       },
       priority: {
         type: Number,
-        // required: true,
       },
     },
   ],
@@ -36,23 +31,18 @@ const weddingSchema = new mongoose.Schema({
     {
       public_id: {
         type: String,
-        // required: true,
       },
       url: {
         type: String,
-        // required: true,
       },
       size: {
         type: Number,
-        // required: true,
       },
       name: {
         type: String,
-        // required: true,
       },
       priority: {
         type: Number,
-        // required: true,
       },
     },
   ],
@@ -60,11 +50,9 @@ const weddingSchema = new mongoose.Schema({
     {
       text: {
         type: String,
-        // required: true,
       },
       priority: {
         type: Number,
-        // required: true,
       },
     },
   ],
@@ -72,11 +60,9 @@ const weddingSchema = new mongoose.Schema({
     {
       url: {
         type: String,
-        // required: true,
       },
       priority: {
         type: Number,
-        // required: true,
       },
     },
   ],
@@ -90,58 +76,45 @@ const weddingSchema = new mongoose.Schema({
     {
       name: {
         type: String,
-        // required: true,
       },
       order: {
         type: Number,
-        // required: true,
       },
       priority: {
         type: Number,
-        // required: true,
       },
       toSaveToDatabse: {
         type: Boolean,
-        // required: true,
       },
       databaseSaveUrl: {
         type: String,
-        // required: true,
       },
       databaseCallType: {
         type: String,
-        // required: true,
       },
       queryObject: {
         type: String,
-        // required: true,
       },
     },
   ],
   textInput: {
     order: {
       type: Number,
-      // required: true,
     },
     priority: {
       type: Number,
-      // required: true,
     },
     toSaveToDatabse: {
       type: Boolean,
-      // required: true,
     },
     databaseSaveUrl: {
       type: String,
-      // required: true,
     },
     databaseCallType: {
       type: String,
-      // required: true,
     },
     queryObject: {
       type: String,
-      // required: true,
     },
   },
 });

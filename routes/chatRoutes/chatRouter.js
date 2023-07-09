@@ -8,6 +8,7 @@ router.post("/chatdetails", async (req, res) => {
   try {
     const {
       authId,
+      chatId,
       order,
       messages,
       location,
@@ -91,8 +92,9 @@ router.post("/chatdetails", async (req, res) => {
     const updatedMessages = messages || [];
     const updatedLocation = location || [];
 
-    const savedPost = await Wedding.create({
+    const weddingData = {
       authId,
+      chatId,
       order,
       messages: updatedMessages.map((message) => ({
         text: message.text || "",
@@ -108,7 +110,9 @@ router.post("/chatdetails", async (req, res) => {
       photos: photosArr,
       videos: videosArr,
       textInput,
-    });
+    };
+
+    const savedPost = await Wedding.create(weddingData);
 
     res.status(200).json({
       message: "Added successfully",
@@ -119,6 +123,7 @@ router.post("/chatdetails", async (req, res) => {
     res.status(500).json({ error: "An error occurred" });
   }
 });
+
 
 // GET request to retrieve all entries
 router.get("/chatdetails", async (req, res) => {
@@ -139,7 +144,7 @@ router.get("/chatdetails", async (req, res) => {
 });
 
 // PUT request to update a specific field of a wedding document
-router.put("/chatdetailstest/:id", async (req, res) => {
+router.put("/chatdetails/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
