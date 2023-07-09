@@ -3,6 +3,69 @@ const router = express.Router();
 const Wedding = require("../../models/chatConvoModel/chatModel");
 const cloudinary = require("../../utils/cloudinary");
 
+
+// POST API endpoint to handle the form submission
+router.post("/chatdetails3", async (req, res) => {
+  try {
+    // Extract the fields from the request body
+    const { authId, chatId, order, messages, photos, location, date, time, options, textInput } = req.body;
+
+    // Store the uploaded photos in Cloudinary
+    let photosArr = [];
+    if (photos && photos.length > 0) {
+      for (const photo of photos) {
+        const result = await cloudinary.uploader.upload(photo.url, {
+          folder: "WeddingEvent",
+          public_id: `photo_${Date.now()}`,
+        });
+        photosArr.push({
+          public_id: result.public_id,
+          url: result.secure_url,
+          size: result.bytes,
+          name: photo.name,
+          priority: photo.priority || 100,
+        });
+      }
+    }
+
+    // Create a new wedding object with the extracted fields and the uploaded photos
+    const wedding = new Wedding({
+      authId,
+      chatId,
+      order,
+      messages,
+      photos: photosArr,
+      location,
+      date,
+      time,
+      options,
+      textInput,
+    });
+
+    // Save the wedding object to the database
+    await wedding.save();
+
+    // Send a success response
+    res.status(200).json({ message: "Wedding submitted successfully", wedding });
+  } catch (error) {
+    // Handle any errors that occurred during the process
+    console.error("Error:", error);
+    res.status(500).json({ error: "An error occurred while submitting the wedding" });
+  }
+});
+
+
+// Create a new wedding
+router.post("/chatdetails2", async (req, res) => {
+  try {
+    const wedding = new Wedding(req.body);
+    const savedWedding = await wedding.save();
+    res.status(201).json(savedWedding);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+})
+
 // Create a new wedding document
 router.post("/chatdetails", async (req, res) => {
   try {
@@ -89,8 +152,8 @@ router.post("/chatdetails", async (req, res) => {
       }
     }
 
-    const updatedMessages = messages || [];
-    const updatedLocation = location || [];
+    const updatedMessages = Array.isArray(messages) ? messages : [];
+    const updatedLocation = Array.isArray(location) ? location : [];
 
     const weddingData = {
       authId,
@@ -123,6 +186,7 @@ router.post("/chatdetails", async (req, res) => {
     res.status(500).json({ error: "An error occurred" });
   }
 });
+
 
 
 // GET request to retrieve all entries

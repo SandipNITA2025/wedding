@@ -6,9 +6,9 @@ const addDetailsController = async (req, res) => {
   try {
     const { authId, order, messages } = req.body;
 
-    if (!req.files || !req.files.photo) {
-      return res.status(400).json({ message: "No file uploaded" });
-    }
+    // if (!req.files || !req.files.photo) {
+    //   return res.status(400).json({ message: "No file uploaded" });
+    // }
 
     const photo = req.files.photo;
 

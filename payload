@@ -4,55 +4,49 @@
 
 1.  GET API : http://localhost:8500/api/auth/chatdetails?authId=6464855699641087a53b46e0
 
-2.  POST API : http://localhost:8500/api/auth/chatdetails
+2.  POST API : http://localhost:8500/api/auth/chatdetails3
 
-                    {
-        "order": 0,
-        "authId": "6464855699641087a53b46e0",
-        "photos": [
-          {
-            "public_id": "photo1",
-            "url": "https://example.com/photo1.jpg",
-            "size": 1024,
-            "name": "Photo 1"
-          },
-          {
-            "public_id": "photo2",
-            "url": "https://example.com/photo2.jpg",
-            "size": 2048,
-            "name": "Photo 2"
-          }
-        ],
-        "videos": [
-          {
-            "public_id": "video1",
-            "url": "https://example.com/video1.mp4",
-            "size": 5120,
-            "name": "Video 1"
-          }
-        ],
-        "messages": [
-          "Message 1",
-          "Message 2"
-        ],
-        "location": ["Wedding Venue"],
-        "date": "2023-07-01",
-        "time": "18:00",
-        "options": [
-          {
-            "name": "Option 1",
-            "order": 1
-          },
-          {
-            "name": "Option 2",
-            "order": 2
-          }
-        ],
-        "textInput": {
-          "order": 456
+      {
+    "authId": "123456",
+    "chatId": "chat123",
+    "order": 1,
+    "messages": [
+        {
+            "text": "Hello",
+            "priority": 1
         }
-
+    ],
+    "photos": [
+        {
+            "public_id": "WeddingEvent/photo_1688533331700",
+            "url": "https://res.cloudinary.com/dcsouj6ix/image/upload/v1688533332/WeddingEvent/photo_1688533331700.webp",
+            "size": 198420,
+            "name": "Best-Wedding-Stage-Decoration-with-Flowers.webp",
+            "priority": 101,
+            "_id": "64a4f9548af92949ffd58f4a"
+        }
+    ],
+    "location": [],
+    "date": "2023-07-10",
+    "time": "12:00 PM",
+    "options": {
+        "name": "Option 1",
+        "order": 1,
+        "priority": 1,
+        "toSaveToDatabse": true,
+        "databaseSaveUrl": "http://example.com/save",
+        "databaseCallType": "POST",
+        "queryObject": "query"
+    },
+    "textInput": {
+        "order": 2,
+        "priority": 2,
+        "toSaveToDatabse": true,
+        "databaseSaveUrl": "http://example.com/save",
+        "databaseCallType": "POST",
+        "queryObject": "query"
     }
+}
 
 
 
