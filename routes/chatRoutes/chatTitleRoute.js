@@ -22,13 +22,13 @@ router.post("/chattitle", async (req, res) => {
   }
 });
 
-// GET request to retrieve chat titles by authId and _id
+// GET request
 router.get("/chattitle/:authId", async (req, res) => {
   try {
-    const { authId } = req.params;
+    const { authId } = req.query;
 
-    const chatTitle = await ChatTitle.findOne({
-      authId
+    const chatTitle = await ChatTitle.find({
+      authId,
     });
 
     if (!chatTitle) {
