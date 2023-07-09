@@ -49,6 +49,19 @@
 }
 
 
+3. chat title:
+    POST API : http://localhost:8500/api/auth/chattitle
+
+    {
+    authId: 
+    chatTitle:
+    uid: 
+  },
+
+  GET http://localhost:8500/api/auth/chattitle/authId
+
+
+
 
 
 
