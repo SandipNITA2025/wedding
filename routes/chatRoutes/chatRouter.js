@@ -66,6 +66,99 @@ router.post("/chatdetails2", async (req, res) => {
   }
 })
 
+
+
+
+
+
+// Create a new wedding document
+router.post('/chatdetailss', async (req, res) => {
+  try {
+    const {
+      order,
+      authId,
+      chatId,
+      photos,
+      videos,
+      messages,
+      location,
+      date,
+      time,
+      options,
+      textInput,
+    } = req.body;
+
+    const photosArr = [];
+    if (photos && photos.length > 0) {
+      for (const photo of photos) {
+        const result = await cloudinary.uploader.upload(photo.tempFilePath, {
+          folder: 'WeddingEvent',
+          public_id: `photo_${Date.now()}`,
+        });
+
+        photosArr.push({
+          public_id: result.public_id,
+          url: result.secure_url,
+          size: result.bytes,
+          name: photo.name,
+          priority: photo.priority || 100,
+        });
+      }
+    }
+
+    const videosArr = [];
+    if (videos && videos.length > 0) {
+      for (const video of videos) {
+        const result = await cloudinary.uploader.upload(video.tempFilePath, {
+          resource_type: 'video',
+          folder: 'Video_Collections',
+          public_id: `video_${Date.now()}`,
+        });
+
+        videosArr.push({
+          public_id: result.public_id,
+          url: result.secure_url,
+          size: result.bytes,
+          name: video.name,
+          priority: video.priority || 102,
+        });
+      }
+    }
+
+    const weddingData = new Wedding({
+      order,
+      authId,
+      chatId,
+      photos: photosArr,
+      videos: videosArr,
+      messages,
+      location,
+      date,
+      time,
+      options,
+      textInput,
+    });
+
+    const savedWedding = await weddingData.save();
+
+    res.status(200).json({
+      message: 'Wedding details saved successfully',
+      savedWedding,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred' });
+  }
+});
+
+
+
+
+
+
+
+
+
 // Create a new wedding document
 router.post("/chatdetails", async (req, res) => {
   try {
@@ -159,6 +252,7 @@ router.post("/chatdetails", async (req, res) => {
       authId,
       chatId,
       order,
+      // messages,
       messages: updatedMessages.map((message) => ({
         text: message.text || "",
         priority: message.priority || 104,
@@ -186,7 +280,6 @@ router.post("/chatdetails", async (req, res) => {
     res.status(500).json({ error: "An error occurred" });
   }
 });
-
 
 
 // GET request to retrieve all entries

@@ -6,6 +6,10 @@
 
 2.  POST API : http://localhost:8500/api/auth/chatdetails3
 
+            OR
+
+            http://localhost:8500/api/auth/chatdetails
+
       {
     "authId": "123456",
     "chatId": "chat123",
@@ -13,6 +17,10 @@
     "messages": [
         {
             "text": "Hello",
+            "priority": 1
+        },
+        {
+            "text": "There",
             "priority": 1
         }
     ],

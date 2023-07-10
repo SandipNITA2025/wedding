@@ -23,9 +23,9 @@ router.post("/chattitle", async (req, res) => {
 });
 
 // GET request to retrieve chat titles by authId and _id
-router.get("/chattitle/:authId", async (req, res) => {
+router.get("/chattitle", async (req, res) => {
   try {
-    const { authId } = req.params;
+    const { authId } = req.query;
 
     const chatTitle = await ChatTitle.findOne({
       authId,
