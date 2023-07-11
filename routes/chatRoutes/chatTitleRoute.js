@@ -27,7 +27,7 @@ router.get("/chattitle", async (req, res) => {
   try {
     const { authId } = req.query;
 
-    const chatTitle = await ChatTitle.findOne({
+    const chatTitle = await ChatTitle.find({
       authId,
     });
 
